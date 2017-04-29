@@ -10,7 +10,7 @@
 	export default {
 		data() {
 			return {
-				name: 'app-vue'
+				name: 'app-vue hot haha'
 			}
 		},
 		components: {

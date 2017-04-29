@@ -1,15 +1,18 @@
 var path = require('path')
-// var webpack = require('webpack')
+var webpack = require('webpack')
 var dist = path.resolve(__dirname, '../dist')
 
 module.exports = {
 	watch: true,
 	entry: {
-		main: path.resolve(__dirname, '../main.js')
+		main: [path.resolve(__dirname, '../main.js'),
+			'webpack-hot-middleware/client?path=/dist/__webpack_hmr&timeout=20000',
+		]
 	},
 	output: {
 		path: dist,
-		filename: 'build.js'
+		filename: 'build.js',
+		publicPath: '/dist/'
 	},
 	resolve: {
 		extensions: ['.js', '.vue'],
@@ -33,5 +36,13 @@ module.exports = {
 			test: /\.vue$/,
 			use: 'vue-loader'
 		}]
-	}
+	},
+	plugins: [
+  		new webpack.HotModuleReplacementPlugin(),
+  		new webpack.DefinePlugin({
+		    'process.env': {
+		     	NODE_ENV: JSON.stringify('dev')
+	   		 }
+	   	})
+	]
 }
