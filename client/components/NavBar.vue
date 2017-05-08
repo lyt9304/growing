@@ -42,6 +42,8 @@
 
 .el-menu-item a{
 	display: block;
+	color: inherit;
+	text-decoration: none;
 }
 
 </style>
